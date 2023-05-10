@@ -9,7 +9,7 @@ freezer = Freezer(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('Auth.html')
 
 @app.route('/p', methods=['POST'])
 def redirect_page():
