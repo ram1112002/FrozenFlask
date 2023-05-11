@@ -6,14 +6,20 @@ import os
 
 app = Flask(__name__)
 freezer = Freezer(app)
-
+output_folder = os.path.join(app.config['FREEZER_DESTINATION'], 'p')
+userName= ""
 @app.route('/')
 def index():
-    return render_template('Auth.html')
+    return render_template('index.html')
+
+@app.route('/I')
+def redirects():
+    return render_template('index.html')
 
 @app.route('/p', methods=['POST'])
 def redirect_page():
     user_name = request.form['user_input']
+    userName = user_name
     user_email = request.form['user_email'].lower()
     user_edu = request.form['user_edu']
     user_dob = request.form['user_dob']
@@ -39,7 +45,7 @@ def StaticFile(user_input):
     
     output_filename = f"{user_input}.html"
 
-    with open(os.path.join(app.static_folder, output_filename), 'w') as file:
+    with open(os.path.join(output_folder, output_filename), 'w') as file:
         file.write(template)
 
 @app.route('/p/<user_input>')
@@ -69,5 +75,6 @@ def redirected_page():
         print("Error occurred:", response.status_code)
     
 if __name__ == '__main__':
+    app.config['FREEZER_DESTINATION'] = 'build'
     freezer.freeze()
-    app.run(debug=False,host='0.0.0.0')
+    app.run()
