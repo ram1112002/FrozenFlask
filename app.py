@@ -10,7 +10,7 @@ output_folder = os.path.join(app.config['FREEZER_DESTINATION'], 'p')
 userName= ""
 @app.route('/')
 def index():
-    return render_template('Auth.html')
+    return render_template('index.html')
 
 @app.route('/I')
 def redirects():
