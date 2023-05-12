@@ -9,7 +9,7 @@ freezer = Freezer(app)
 output_folder = os.path.join(app.config['FREEZER_DESTINATION'], 'p')
 @app.route('/')
 def index():
-    return render_template('Auth.html')
+    return render_template('index.html')
 
 @app.route('/I.html')
 def redirects():
@@ -19,7 +19,7 @@ def redirects():
 def redirected_page(user_input):
     temp = render_template('redirect_page.html', user_input=user_input)
     return temp
-@app.route('/S')
+@app.route('/S.html')
 def Success():
     return render_template('Success.html')
 
