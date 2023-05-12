@@ -19,6 +19,9 @@ def redirects():
 def redirected_page(user_input):
     temp = render_template('redirect_page.html', user_input=user_input)
     return temp
+@app.route('/S')
+def Success():
+    return render_template('Success.html')
 
 @freezer.register_generator
 def redirected_page():
