@@ -15,7 +15,7 @@ def index():
 def redirects():
     return render_template('index.html')
 
-@app.route('/p.html')
+@app.route('/p', methods=['POST'])
 def redirect_page():
     user_name = request.form['user_input']
     user_email = request.form['user_email'].lower()
@@ -31,7 +31,6 @@ def redirect_page():
     api_endpoint = "https://biodata.fastgen.com/create-user"
     response = requests.post(api_endpoint,headers=headers, json=data)
     if response.status_code == 200:
-        result = response.json()
         print("Data sent successfully")
     else:
         print("Error occurred", response.status_code)
