@@ -15,10 +15,6 @@ def index():
 def redirects():
     return render_template('index.html')
 
-
-
-
-
 @app.route('/p/<user_input>.html')
 def redirected_page(user_input):
     temp = render_template('redirect_page.html', user_input=user_input)
@@ -46,3 +42,4 @@ def redirected_page():
 if __name__ == '__main__':
     app.config['FREEZER_DESTINATION'] = 'build'
     freezer.freeze()
+    app.run()

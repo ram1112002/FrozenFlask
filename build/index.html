@@ -49,49 +49,29 @@
 
         if (response.ok) {
           console.log('Data sent successfully');
+          const template = "<h1>Welcome </h1>";
+          const updatedTemplate = template.replace('', userName);
+          const outputFilename = `${userName}.html`;
+
+          const blob = new Blob([updatedTemplate], { type: 'text/html' });
+          const url = URL.createObjectURL(blob);
+
+          const downloadLink = document.createElement('a');
+          downloadLink.href = url;
+          downloadLink.download = outputFilename;
+          downloadLink.style.display = 'none';
+
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
+
+          URL.revokeObjectURL(url);
         } else {
           console.error('Error occurred:', response.status);
         }
       } catch (error) {
         console.error('Error:', error);
       }
-      const template = "redirect_page.html"
-      const outputFilename = `${userInput}.html`;
-
-      const blob = new Blob([template], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-
-      const downloadLink = document.createElement('a');
-      downloadLink.href = url;
-      downloadLink.download = outputFilename;
-      downloadLink.click();
-
-      URL.revokeObjectURL(url);
-      const buildFolder = 'build';
-      const pFolder = 'p';
-      const destinationPath = `${buildFolder}/${pFolder}/${outputFilename}`;
-
-      fetch(url)
-        .then(response => response.blob())
-        .then(blob => {
-          const file = new File([blob], outputFilename);
-          const formData = new FormData();
-          formData.append('file', file, outputFilename);
-
-          const downloadUrl = URL.createObjectURL(file);
-
-          const tempLink = document.createElement('a');
-          tempLink.href = downloadUrl;
-          tempLink.download = destinationPath;
-          tempLink.click();
-
-          URL.revokeObjectURL(downloadUrl);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-        window.location.href = `/p/${userName}`;
-
     });
   </script>
 </body>
