@@ -12,7 +12,7 @@ userName= ""
 def index():
     return render_template('Auth.html')
 
-@app.route('/I')
+@app.route('/index.html')
 def redirects():
     return render_template('index.html')
 
@@ -70,7 +70,6 @@ def redirected_page():
             print(name)
             for j in name:
                 StaticFile(j)
-                yield {'user_input': j}
     else:
         print("Error occurred:", response.status_code)
     
