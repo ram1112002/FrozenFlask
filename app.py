@@ -11,7 +11,7 @@ output_folder = os.path.join(app.config['FREEZER_DESTINATION'], 'p')
 def index():
     return render_template('Auth.html')
 
-@app.route('/index.html', methods=['POST'])
+@app.route('/I.html')
 def redirects():
     return render_template('index.html')
 
