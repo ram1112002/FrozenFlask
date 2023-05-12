@@ -7,19 +7,17 @@ import os
 app = Flask(__name__)
 freezer = Freezer(app)
 output_folder = os.path.join(app.config['FREEZER_DESTINATION'], 'p')
-userName= ""
 @app.route('/')
 def index():
     return render_template('Auth.html')
 
-@app.route('/I')
+@app.route('/I', methods=['POST'])
 def redirects():
     return render_template('index.html')
 
 @app.route('/p', methods=['POST'])
 def redirect_page():
     user_name = request.form['user_input']
-    userName = user_name
     user_email = request.form['user_email'].lower()
     user_edu = request.form['user_edu']
     user_dob = request.form['user_dob']
@@ -77,3 +75,4 @@ def redirected_page():
 if __name__ == '__main__':
     app.config['FREEZER_DESTINATION'] = 'build'
     freezer.freeze()
+    app.run()
