@@ -35,8 +35,9 @@ def redirect_page():
             print("Data sent successfully")
         else:
             print("Error occurred", response.status_code)
-        return redirect(f'/p/{user_name}')
+        StaticFile(user_name)
 
+        return redirect(f'/p/{user_name}')
 
 def StaticFile(user_input):
     template = render_template('redirect_page.html', user_input=user_input)
@@ -49,7 +50,6 @@ def StaticFile(user_input):
 @app.route('/p/<user_input>.html')
 def redirected_page(user_input):
     temp = render_template('redirect_page.html', user_input=user_input)
-    StaticFile(user_input)
     return temp
 
 @freezer.register_generator

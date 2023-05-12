@@ -12,5 +12,16 @@
   <label for="user-dob">Enter your Date of Birth:</label>
   <input type="text" id="user-dob" name="user_dob" required>
   <br>
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" onclick="getElement()">
 </form>
+<script type="text/javascript">
+  function getElement() {
+
+    var value = document.getElementById("user_input").value;
+
+    window.location.href = "/p/"+value;
+
+  }
+  
+
+</script>
