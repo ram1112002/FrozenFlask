@@ -15,7 +15,7 @@ def index():
 def redirects():
     return render_template('index.html')
 
-@app.route('/p', methods=['POST'])
+@app.route('/p.html')
 def redirect_page():
     user_name = request.form['user_input']
     user_email = request.form['user_email'].lower()
