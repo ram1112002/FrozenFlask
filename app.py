@@ -17,24 +17,25 @@ def redirects():
 
 @app.route('/p', methods=['POST'])
 def redirect_page():
-    user_name = request.form['user_input']
-    user_email = request.form['user_email'].lower()
-    user_edu = request.form['user_edu']
-    user_dob = request.form['user_dob']
-    data = {
-            "name": user_name,
-            "email": user_email,
-            "qualification": user_edu,
-            "date_of_birth": user_dob
-        }
-    headers = {}
-    api_endpoint = "https://biodata.fastgen.com/create-user"
-    response = requests.post(api_endpoint,headers=headers, json=data)
-    if response.status_code == 200:
-        print("Data sent successfully")
-    else:
-        print("Error occurred", response.status_code)
-    return redirect('/p/' + user_name)
+    if request.method == 'POST':
+        user_name = request.form['user_input']
+        user_email = request.form['user_email'].lower()
+        user_edu = request.form['user_edu']
+        user_dob = request.form['user_dob']
+        data = {
+                "name": user_name,
+                "email": user_email,
+                "qualification": user_edu,
+                "date_of_birth": user_dob
+            }
+        headers = {}
+        api_endpoint = "https://biodata.fastgen.com/create-user"
+        response = requests.post(api_endpoint,headers=headers, json=data)
+        if response.status_code == 200:
+            print("Data sent successfully")
+        else:
+            print("Error occurred", response.status_code)
+        return redirect(f'/p/{user_name}')
 
 
 def StaticFile(user_input):
