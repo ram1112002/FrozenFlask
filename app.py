@@ -45,3 +45,4 @@ def redirected_page():
 if __name__ == '__main__':
     app.config['FREEZER_DESTINATION'] = 'build'
     freezer.freeze()
+
