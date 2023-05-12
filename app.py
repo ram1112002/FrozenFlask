@@ -34,7 +34,7 @@ def redirect_page():
         print("Data sent successfully")
     else:
         print("Error occurred", response.status_code)
-    return render_template('/p/' + user_name)
+    return redirect('/p/' + user_name)
 
 
 def StaticFile(user_input):
@@ -66,7 +66,6 @@ def redirected_page():
                 name.append(i.get("name"))
             print(name)
             for j in name:
-                StaticFile(j)
                 yield {'user_input': j}
     else:
         print("Error occurred:", response.status_code)
