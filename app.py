@@ -11,7 +11,7 @@ output_folder = os.path.join(app.config['FREEZER_DESTINATION'], 'p')
 def index():
     return render_template('Auth.html')
 
-@app.route('/I', methods=['POST'])
+@app.route('/index.html', methods=['POST'])
 def redirects():
     return render_template('index.html')
 
@@ -46,7 +46,7 @@ def StaticFile(user_input):
     with open(os.path.join(output_folder, output_filename), 'w') as file:
         file.write(template)
 
-@app.route('/p/<user_input>')
+@app.route('/p/<user_input>.html')
 def redirected_page(user_input):
     temp = render_template('redirect_page.html', user_input=user_input)
     StaticFile(user_input)
