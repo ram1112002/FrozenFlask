@@ -17,18 +17,11 @@ def redirects():
 
 
 
-def StaticFile(user_input):
-    template = render_template('redirect_page.html', user_input=user_input)
-    
-    output_filename = f"{user_input}.html"
 
-    with open(os.path.join(output_folder, output_filename), 'w') as file:
-        file.write(template)
 
 @app.route('/p/<user_input>.html')
 def redirected_page(user_input):
     temp = render_template('redirect_page.html', user_input=user_input)
-    StaticFile(user_input)
     return temp
 
 @freezer.register_generator
