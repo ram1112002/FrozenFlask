@@ -58,4 +58,3 @@ if __name__ == '__main__':
     app.config['FREEZER_DESTINATION'] = 'build'
     app.config['SITEMAP_INCLUDE_RULES_WITHOUT_PARAMS'] = True
     freezer.freeze()
-    app.run()
