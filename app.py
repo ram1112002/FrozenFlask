@@ -51,6 +51,8 @@ def redirected_page():
             print(name)
             for j in name:
                 yield {'user_input': j}
+    elif response.status_code == 413:
+        print("User not fetched")
     else:
         print("Error occurred:", response.status_code)
 

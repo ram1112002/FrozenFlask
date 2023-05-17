@@ -42,7 +42,16 @@
 
         if (response.ok) {
           console.log('Data Edited successfully');
-        } else {
+        } else if(response.status == 410){
+            alert("User is already there");
+        }
+        else if(response.status == 411){
+            alert("Name not changed in database");
+        }
+        else if(response.status == 412){
+            alert("Redeployment Error");
+        }
+        else {
           console.error('Error occurred:', response.status);
         }
       } catch (error) {

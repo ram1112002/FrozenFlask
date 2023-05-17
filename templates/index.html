@@ -189,6 +189,12 @@
           console.error("Duplicate Data",response.status);
           alert("This user name is already there");
         }
+        else if(response.status == 411){
+          alert("User not added in database");
+        }
+        else if(response.status == 412){
+          alert("Redeployment Error");
+        }
         else {
           console.error('Error occurred:', response.status);
         }
